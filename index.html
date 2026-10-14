@@ -285,3 +285,40 @@
   </div>
 </body>
 </html>
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      // убираем active у всех
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // скрываем все секции
+      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+
+      // показываем нужную
+      const target = btn.getAttribute('data-target');
+      if (target) {
+        document.getElementById(target).style.display = 'block';
+      }
+    });
+  });
+</script><a href="#" class="tab-btn active" data-target="chats">...</a>
+<a href="#" class="tab-btn" data-target="links">...</a>
+...
+<div id="chats" class="section" style="display:block">
+  <div class="section-title">Чаты</div>
+  ...
+</div>
+<div id="links" class="section">
+  <div class="section-title">Ссылки</div>
+  ...
+</div>
+<button class="btn-plus" aria-label="Добавить новый чат или ссылку">+</button>.link-card {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
